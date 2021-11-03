@@ -1,0 +1,32 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text;
+
+namespace SGP.AplicationCore.Entity
+{
+    public class Produto
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ProdutoId { get; set; }
+        [Required]
+        public string Nome { get; set; }
+
+        [Display(Name = "Preço")]
+        [Range(1, 100)]
+        [DataType(DataType.Currency)]
+        [Column(TypeName = "decimal(18, 2)")]
+        [Required]
+        public decimal Preco { get; set; }
+
+        [ForeignKey("Categoria")]
+        [Required]
+        public int CategoriaId { get; set; }
+        public Categoria Categorias { get; set; }
+
+
+        
+    }
+}
